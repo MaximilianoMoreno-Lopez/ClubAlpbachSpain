@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Img from '../components/Img.astro';
+import YouTube from '../components/YouTube.astro';
+import Slideshow from '../components/Slideshow.astro';
+import { ORG } from '../lib/site.js';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout
+  title="Connecting Cultures, Enriching Europe"
+  description={ORG.description}
+>
+  <Hero image="hero-home" title="Connecting Cultures, Enriching Europe" minHeight={689}>
+    <p>
+      Club Alpbach Spain empowers the next generation, amplifies Spain's role in a stronger Europe and builds bridges
+      across Europe and Ibero-America. Join us in shaping a strong, democratic future for Europe.
+    </p>
+    <Fragment slot="actions">
+      <a class="btn btn--olive" href={`${base}/community/`}>Join our community</a>
+      <a class="btn btn--olive" href={`${base}/scholarships/`}>Apply for scholarships</a>
+    </Fragment>
+  </Hero>
+
+  <!-- Who are we? -->
+  <section class="section section--cream who">
+    <div class="container who-grid">
+      <div class="who-text reveal">
+        <h2 class="t-olive">Who are we?</h2>
+        <p class="body-large">
+          Club Alpbach Spain is a nonprofit association committed to strengthening Spain's role in Europe by
+          representing our country at the European Forum Alpbach. Through scholarships, events, and partnerships, we
+          connect young leaders and experts from Spain and across Europe to foster collaboration, enrich European
+          perspectives, and drive meaningful dialogue on shared challenges.
+        </p>
+        <a class="btn btn--olive-soft" href={`${base}/about/`}>About us</a>
+      </div>
+      <div class="who-img rounded reveal">
+        <Img name="talent-forum" class="cover" style="object-position: 37.5% 50%" sizes="(min-width: 900px) 400px, 100vw" />
+      </div>
+      <div class="who-img rounded reveal">
+        <Img name="unravelling-reality" class="cover" sizes="(min-width: 900px) 400px, 100vw" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Banda de foto -->
+  <div class="band" aria-hidden="true">
+    <Img name="climate-action" class="cover" widths={[800, 1280, 1920]} sizes="100vw" />
+  </div>
+
+  <!-- The European Forum Alpbach -->
+  <section class="section section--olive efa">
+    <div class="container efa-grid">
+      <div class="efa-text reveal">
+        <h2 class="h3">The European Forum Alpbach</h2>
+        <div class="body-large">
+          <p>
+            The European Forum Alpbach (EFA) is a unique space for reflection and action dedicated to fostering a
+            strong, democratic Europe. Since its founding in 1945, the Forum has brought together young people from
+            Europe and beyond with leading minds across politics, business, science, culture, and civil society. This
+            diverse, intergenerational, and interdisciplinary community gathers annually in Alpbach, Austria, creating a
+            collaborative environment that bridges ideas and spurs innovation.
+          </p>
+          <p>
+            The Forum’s mission is clear: to empower Europe to thrive in an interconnected world as a force for good,
+            contributing to global peace, prosperity, and the advancement of shared values. Through transformational
+            encounters, EFA helps shape key decisions and influence leaders across Europe, fostering dialogue that
+            strengthens civil society, aligns regulatory frameworks, and upholds democratic values. By uniting voices
+            from across sectors, EFA propels Europe toward a future defined by cooperation, open borders, and
+            opportunity for all.
+          </p>
+        </div>
+        <a class="btn btn--cream" href={ORG.efaUrl} target="_blank" rel="noopener nofollow">More information</a>
+      </div>
+      <div class="efa-video reveal">
+        <YouTube id="AjvUyIvPeQQ" title="European Forum Alpbach" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Join us -->
+  <section class="section section--cream join">
+    <div class="container join-grid">
+      <div class="join-text reveal">
+        <h2 class="t-olive">Join us in creating a better Europe</h2>
+        <p class="body-large">
+          Interested in partnering with us? Join us in supporting young leaders and advancing cross-cultural dialogue in
+          Europe and beyond.
+        </p>
+        <a class="btn btn--olive-soft" href={`${base}/partners/`}>More information</a>
+      </div>
+      <div class="join-img rounded reveal">
+        <Img name="european-security" class="cover" sizes="(min-width: 900px) 612px, 100vw" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Network & Events -->
+  <section class="section section--olive network">
+    <div class="container">
+      <h2 class="center reveal">Network &amp; Events</h2>
+      <div class="network-grid">
+        <article class="ncard reveal">
+          <div class="ncard-img rounded">
+            <Img name="anything-goes" class="cover" style="object-position: 100% 7.5%" sizes="(min-width: 900px) 606px, 100vw" />
+          </div>
+          <div class="ncard-box">
+            <p>
+              Our network is at the heart of everything we do. By joining Club Alpbach Spain, you’ll connect with
+              like-minded individuals committed to shaping Europe’s future, gain access to exclusive events, and be part
+              of a network that spans across Europe and Ibero-America. Become a member and help us foster meaningful
+              change.
+            </p>
+            <a class="btn btn--dark" href={`${base}/community/`}>Become a member</a>
+          </div>
+        </article>
+        <article class="ncard reveal">
+          <div class="ncard-img rounded">
+            <Img name="geopolitical-shifts" class="cover" sizes="(min-width: 900px) 606px, 100vw" />
+          </div>
+          <div class="ncard-box">
+            <p>
+              Our events bring together visionaries, young leaders, and experts from Spain, Europe, and beyond to tackle
+              today’s challenges and shape tomorrow's solutions. From insightful discussions and interactive workshops to
+              inspiring talks, each event is an opportunity to connect, learn, and contribute to a more democratic and
+              integrated Europe.
+            </p>
+            <a class="btn btn--dark" href="https://www.instagram.com/clubalpbachspain/" target="_blank" rel="noopener nofollow">Stay updated</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <Slideshow images={['pride-alpbach', 'geopolitical-shifts-2', 'creative-writing']} />
+</BaseLayout>
+
+<style>
+  /* Who are we? */
+  .who { padding: 144px 0 136px; }
+  .who-grid { display: grid; grid-template-columns: 366px 400px 400px; justify-content: space-between; gap: 12px; align-items: center; }
+  .who-text h2 { margin-bottom: 16px; }
+  .who-text .btn { margin-top: 32px; }
+  .who-img { height: 464px; }
+
+  .band { height: 580px; }
+
+  /* EFA */
+  .efa-grid { display: grid; grid-template-columns: 606px 558px; justify-content: space-between; gap: 40px; align-items: center; }
+  .efa-text h2 { margin-bottom: 16px; }
+  .efa-text .btn { margin-top: 24px; }
+  .efa-video { height: 424px; }
+
+  /* Join */
+  .join { padding: 80px 0 120px; }
+  .join-grid { display: grid; grid-template-columns: 503px 612px; justify-content: space-between; gap: 40px; align-items: center; }
+  .join-text h2 { max-width: 475px; margin-bottom: 16px; }
+  .join-text .btn { margin-top: 40px; }
+  .join-img { height: 472px; }
+
+  /* Network & Events */
+  .network { padding: 80px 0 120px; }
+  .network h2 { margin-bottom: 64px; }
+  .network-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ncard { display: flex; flex-direction: column; align-items: center; }
+  .ncard-img { width: 100%; height: 304px; }
+  .ncard-box {
+    position: relative;
+    width: calc(100% - 66px);
+    margin-top: -80px;
+    padding: 29px 34px 32px;
+    background: var(--cream);
+    color: #000;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 24px;
+  }
+  .ncard-box .btn { min-width: 170px; padding-inline: 32px; }
+
+  @media (max-width: 1240px) {
+    .who-grid { grid-template-columns: 1.1fr 1fr 1fr; gap: 24px; }
+    .efa-grid, .join-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 899px) {
+    .who, .join, .network { padding: 56px 0; }
+    .who-grid { grid-template-columns: 1fr 1fr; }
+    .who-text { grid-column: 1 / -1; text-align: center; }
+    .who-img { height: 320px; }
+    .band { height: 270px; }
+    .efa-grid, .join-grid { grid-template-columns: 1fr; }
+    .efa-text, .join-text { text-align: center; }
+    .join-text h2 { margin-inline: auto; }
+    .efa-video { height: auto; aspect-ratio: 16 / 9; }
+    .join-img { height: 320px; }
+    .network-grid { grid-template-columns: 1fr; gap: 48px; }
+    .network h2 { margin-bottom: 40px; }
+  }
+  @media (max-width: 560px) {
+    .who-grid { grid-template-columns: 1fr; }
+    .who-img { height: 264px; }
+    .ncard-box { width: 100%; margin-top: 0; padding: 24px 20px; }
+  }
+</style>

@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<BaseLayout title="Page not found">
+  <Hero image="hero-soon" title="Page not found" minHeight={480}>
+    <p>The page you are looking for does not exist or has moved.</p>
+    <Fragment slot="actions">
+      <a class="btn btn--olive" href={`${base}/`}>Back to home</a>
+    </Fragment>
+  </Hero>
+</BaseLayout>

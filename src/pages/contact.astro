@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Img from '../components/Img.astro';
+import { ORG } from '../lib/site.js';
+
+const issues = ['Scholarships', 'Partnerships & Collaborations', 'Membership', 'Other'];
+---
+
+<BaseLayout
+  title="Contact us"
+  description="We’d love to hear from you! Whether you’re interested in our programs, partnerships, or events, or have questions about our scholarship opportunities, please contact us."
+>
+  <Hero image="hero-contact" title="Contact us" minHeight={497}>
+    <p>
+      We’d love to hear from you! Whether you’re interested in our programs, partnerships, or events, or have questions
+      about our scholarship opportunities, please reach out to us.
+    </p>
+  </Hero>
+
+  <section class="section section--cream contact">
+    <div class="container contact-grid">
+      <div class="contact-img rounded reveal">
+        <Img name="indo-pacific" class="cover" sizes="(min-width: 900px) 606px, 100vw" />
+      </div>
+
+      <div class="contact-form reveal">
+        <h2 class="h3 t-olive">Get in touch</h2>
+        <form
+          data-mailto={ORG.email}
+          data-subject="Contact form"
+          action={`mailto:${ORG.email}?subject=Contact%20form`}
+          method="post"
+          enctype="text/plain"
+        >
+          <div class="field">
+            <label for="c-name">Name</label>
+            <input id="c-name" class="input" name="Name" placeholder="Your name" autocomplete="given-name" required />
+          </div>
+          <div class="field">
+            <label for="c-last">Last name</label>
+            <input id="c-last" class="input" name="Last name" placeholder="Your last name" autocomplete="family-name" required />
+          </div>
+          <div class="field">
+            <label for="c-email">Email</label>
+            <input id="c-email" class="input" type="email" name="Email" placeholder="Your email address" autocomplete="email" required />
+          </div>
+          <fieldset class="field radios">
+            <legend>Issue</legend>
+            {issues.map((v, i) => (
+              <label class="radio">
+                <input type="radio" name="Issue" value={v} required={i === 0} />
+                <span>{v}</span>
+              </label>
+            ))}
+          </fieldset>
+          <div class="field">
+            <label for="c-msg">Message</label>
+            <textarea id="c-msg" class="input" name="Message" placeholder="Enter your message" required></textarea>
+          </div>
+          <button class="submit" type="submit">Submit</button>
+          <p class="form-ok" role="status" hidden>Thank You!</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact { padding: 80px 0 75px; }
+  .contact-grid { display: grid; grid-template-columns: 606px 503px; justify-content: space-between; gap: 40px; align-items: start; }
+  .contact-img { height: 664px; }
+  .contact-form h2 { margin-bottom: 16px; }
+  form { display: grid; gap: 15px; }
+  .field label, .field legend { color: var(--ink); }
+  .input { background: rgba(255, 255, 255, .52); color: var(--olive); }
+  .input:hover { background: rgba(255, 199, 102, .5); color: var(--ink); border-color: var(--olive); }
+  .input::placeholder { color: rgba(89, 93, 43, .7); }
+  .radios { border: 0; margin: 0; padding: 0; gap: 8px; }
+  .radios legend { margin-bottom: 6px; }
+  .radio { display: flex; align-items: center; gap: 10px; font-size: 16px; cursor: pointer; }
+  .radio input { width: 18px; height: 18px; margin: 0; accent-color: var(--olive); }
+  .submit {
+    justify-self: start;
+    min-height: 50px; padding: 14px 40px;
+    border: 1px solid transparent; border-radius: 50px;
+    background: var(--olive); color: var(--cream);
+    font: inherit; font-size: 16px; cursor: pointer;
+    transition: background-color .2s, color .2s;
+  }
+  .submit:hover { background: var(--ink); color: var(--gold); }
+
+  @media (max-width: 1240px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 899px) {
+    .contact { padding: 56px 0; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .contact-img { height: 320px; }
+  }
+</style>

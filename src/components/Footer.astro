@@ -1,0 +1,92 @@
+---
+import { ORG } from '../lib/site.js';
+import Img from './Img.astro';
+import SocialIcons from './SocialIcons.astro';
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <Img name="logo-cream" alt={ORG.name} widths={[300, 502]} sizes="251px" class="footer-logo" />
+
+      <div class="footer-contact">
+        <h2 class="h6">Contact us</h2>
+        <p>
+          Have questions or want to connect? Reach out to us at
+          <a href={`mailto:${ORG.email}`}>{ORG.email}</a>. Follow us on social media to stay updated with our latest
+          news and events.
+        </p>
+        <SocialIcons />
+      </div>
+
+      <div class="footer-news">
+        <h2 class="h6">Subscribe to our newsletter</h2>
+        <form
+          class="news-form"
+          data-mailto={ORG.email}
+          data-subject="Newsletter subscription"
+          action={`mailto:${ORG.email}?subject=Newsletter%20subscription`}
+          method="post"
+          enctype="text/plain"
+        >
+          <div class="field">
+            <label for="news-email">Email address</label>
+            <input id="news-email" class="input" type="email" name="Email" placeholder="Your email address" autocomplete="email" required />
+          </div>
+          <button class="news-btn" type="submit">Submit</button>
+          <p class="form-ok" role="status" hidden>Thank you!</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="body-small">Content © {ORG.name} 2024</p>
+      <p class="body-small">Pictures © EFA / Andrei Pungovschi, Marko Risovic, Ioana Cirlig, Elisabeth Mandl, Philipp Huber</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { background: var(--olive); color: var(--cream); padding: 80px 0 48px; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 251px 288px minmax(0, 503px);
+    justify-content: space-between;
+    gap: 40px;
+    align-items: start;
+  }
+  .footer :global(.footer-logo) { width: 251px; height: auto; margin-top: -16px; }
+  .h6 { font-size: 20px; line-height: 1.3; margin-bottom: 8px; }
+  .footer-contact a { color: inherit; }
+  .footer-contact a:hover { color: var(--gold); }
+
+  .news-form { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; margin-top: 14px; }
+  .news-form .field { grid-column: 1 / -1; }
+  .news-form label { color: var(--cream); font-size: 16px; }
+  .news-form .input { background: var(--cream); color: var(--ink); }
+  .news-form .input:hover { background: var(--gold-soft); color: var(--olive); }
+  .news-btn {
+    grid-column: 1;
+    justify-self: start;
+    min-height: 48px; padding: 12px 32px;
+    border: 0; border-radius: 24px;
+    background: var(--gold); color: var(--olive);
+    font: inherit; font-size: 16px; cursor: pointer;
+    transition: background-color .2s, color .2s;
+  }
+  .news-btn:hover { background: var(--ink); color: var(--gold); }
+  .form-ok { grid-column: 1 / -1; }
+
+  .footer-legal { margin-top: 170px; text-align: center; display: grid; gap: 16px; }
+
+  @media (max-width: 1000px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-news { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    .footer { padding: 40px 0; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer :global(.footer-logo) { width: 220px; margin: 0; }
+    .footer-legal { margin-top: 48px; }
+  }
+</style>

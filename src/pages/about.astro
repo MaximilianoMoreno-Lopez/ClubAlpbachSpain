@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Img from '../components/Img.astro';
+import { BOARD } from '../lib/site.js';
+
+const values = [
+  { title: 'Empowering the Next Generation', text: 'We engage young voices from Spain and Europe to create impactful, cross-boundary dialogue and innovation.' },
+  { title: 'Advancing Democratic Participation', text: 'We promote inclusion and support underrepresented communities, creating a platform for meaningful representation.' },
+  { title: 'Reimagining European Narratives', text: 'Our club amplifies Southern European, Mediterranean, and Ibero-American perspectives on pressing global and regional topics.' },
+  { title: 'Enhancing European Integration', text: 'Club Alpbach Spain solidifies Spain’s role as a bridge between Europe and Ibero-America, promoting mutually beneficial relations.' },
+  { title: 'Engaging Spanish Institutions', text: 'Involving Spanish institutions to bring Spanish perspectives into the broader European discussion and foster lasting collaborations.' },
+];
+
+// Encuadre de las tres fotos del club en la original (x %, y %, zoom)
+const clubPhotos = [
+  { name: 'club-1', crop: [49.3, 56.5, 1.375] },
+  { name: 'club-2', crop: [60.7, 32.9, 1.1875] },
+  { name: 'club-3', crop: [50, 36, 1.5625] },
+];
+const cropStyle = ([x, y, s]: number[]) =>
+  `object-position:${x}% ${y}%;transform:scale(${s});transform-origin:${x}% ${y}%`;
+---
+
+<BaseLayout
+  title="About us"
+  description="About us | Club Alpbach Spain was founded in 2024 by five alumni inspired by their experience at the European Forum Alpbach. With a shared vision to build connections between Spain, Europe, and Ibero-America, they established the first Spanish club to contribute to EFA's mission."
+>
+  <Hero image="hero-about" title="About us">
+    <p>
+      Club Alpbach Spain was founded in 2024 by five alumni inspired by their experience at the European Forum
+      Alpbach. We aim to strenghten Spain's connections within Europe and empower the next generation of leaders to
+      actively engage in shaping Europe’s future.
+    </p>
+  </Hero>
+
+  <!-- Who are we? -->
+  <section class="section section--cream">
+    <div class="container">
+      <h2 class="t-olive center reveal">Who are we?</h2>
+      <p class="body-large center intro reveal">
+        Founded in 2024 by five Spanish participants inspired by the European Forum Alpbach (EFA) "BOLD EUROPE" theme,
+        Club Alpbach Spain represents Spain within the EFA community. As a young and vibrant association, we aim to
+        connect Spain with the greater European conversation, emphasizing collaboration with the Ibero-American region.
+        We unite leaders, scholars, and institutions around key values of democracy, equality, and cultural exchange.
+      </p>
+      <div class="club-photos">
+        {clubPhotos.map((p) => (
+          <div class="club-photo rounded reveal">
+            <Img name={p.name} alt="Members of Club Alpbach Spain" class="cover" style={cropStyle(p.crop)} sizes="(min-width: 900px) 400px, 100vw" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Mission & Values -->
+  <section class="section section--olive values">
+    <div class="container">
+      <h2 class="center reveal">Our Mission &amp; Values</h2>
+      <p class="body-large center intro intro--narrow reveal">
+        Our purpose is to deepen Spain’s involvement in EFA, creating an increasingly diverse and international platform
+        for addressing complex global issues and building bridges across borders to encourage dialogue and collaboration
+        on the pressing issues facing our continent today.
+      </p>
+      <ul class="values-grid">
+        {values.map((v) => (
+          <li class="value reveal">
+            <h3 class="h6 t-olive">{v.title}</h3>
+            <p>{v.text}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Board Members -->
+  <section class="section section--cream board">
+    <div class="container">
+      <h2 class="t-olive center reveal">Board Members 26'</h2>
+      <ul class="board-grid">
+        {BOARD.map((m) => (
+          <li class="member reveal">
+            <div class="member-photo rounded">
+              <Img name={m.photo} alt={m.name} class="cover" style={cropStyle(m.crop)} widths={[320, 480]} sizes="157px" />
+            </div>
+            <div class="member-info">
+              <div class="member-head">
+                <h3 class="h6 t-olive">{m.name}</h3>
+                <span class="pronouns">{m.pronouns}</span>
+              </div>
+              <p class="body-large">{m.role}</p>
+              <a class="btn btn--olive-gold btn--sm" href={m.linkedin} target="_blank" rel="noopener nofollow">
+                Contact<span class="sr-only"> {m.name} on LinkedIn (opens in a new tab)</span>
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .intro { max-width: 812px; margin: 24px auto 0; }
+  .intro--narrow { max-width: 606px; }
+
+  .club-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 54px; }
+  .club-photo { height: 440px; }
+
+  .values { padding: 80px 0 120px; }
+  .values-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 32px 12px;
+    max-width: 920px; margin: 32px auto 0; padding: 0; list-style: none;
+  }
+  .value {
+    flex: 0 0 297px;
+    min-height: 209px;
+    padding: 24px 28px;
+    background: var(--cream);
+    color: var(--ink);
+    text-align: center;
+  }
+  .value h3 { margin-bottom: 8px; }
+
+  .board { padding: 40px 0 120px; }
+  .board-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px;
+    max-width: 1100px; margin: 48px auto 0; padding: 0; list-style: none;
+  }
+  .member { display: flex; gap: 52px; align-items: center; justify-content: center; }
+  .member-photo { flex: 0 0 157px; height: 200px; }
+  .member-info { flex: 0 1 340px; }
+  .member-head { display: flex; align-items: baseline; gap: 16px; justify-content: space-between; }
+  /* Etiqueta oliva con texto crema en negrita cursiva, como la original */
+  .pronouns {
+    padding: 1px 5px;
+    background: var(--olive); color: var(--cream);
+    font-size: 14px; font-weight: 700; font-style: italic; line-height: 1.3;
+    white-space: nowrap;
+  }
+  .member-info p { margin: 2px 0 14px; }
+  .member .btn { min-width: 130px; }
+
+  @media (max-width: 899px) {
+    .club-photos { grid-template-columns: 1fr; }
+    .club-photo { height: 264px; }
+    .values { padding: 56px 0; }
+    .value { flex-basis: 100%; min-height: 0; }
+    .board { padding: 56px 0; }
+    .board-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .member { flex-direction: column; text-align: center; gap: 16px; }
+    .member-info { flex-basis: auto; }
+    .member-head { justify-content: center; flex-wrap: wrap; gap: 4px 12px; }
+  }
+</style>

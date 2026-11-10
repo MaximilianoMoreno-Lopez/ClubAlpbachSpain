@@ -1,0 +1,35 @@
+---
+// Vídeo de YouTube que solo se carga al pulsar (sin cookies de YouTube hasta entonces).
+interface Props { id: string; title: string; }
+const { id, title } = Astro.props;
+---
+
+<div class="yt" data-id={id} data-title={title}>
+  <button type="button" class="yt-play" aria-label={`Play video: ${title}`}>
+    <img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" loading="lazy" width="480" height="360" />
+    <svg viewBox="0 0 68 48" width="68" height="48" aria-hidden="true"><path d="M66.5 7.7A8.5 8.5 0 0 0 60.5 1.7C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6c5.3 1.4 26.5 1.4 26.5 1.4s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#f00"/><path d="M45 24 27 14v20z" fill="#fff"/></svg>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.yt').forEach((box) => {
+    box.querySelector('button')?.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${box.dataset.id}?autoplay=1&playsinline=1`;
+      iframe.title = box.dataset.title || 'YouTube video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      box.replaceChildren(iframe);
+    });
+  });
+</script>
+
+<style>
+  .yt { position: relative; width: 100%; height: 100%; min-height: 187px; background: #000; overflow: hidden; }
+  .yt-play { all: unset; position: absolute; inset: 0; cursor: pointer; display: grid; place-items: center; }
+  .yt-play img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .yt-play svg { position: relative; opacity: .9; transition: opacity .2s, transform .2s; }
+  .yt-play:hover svg, .yt-play:focus-visible svg { opacity: 1; transform: scale(1.08); }
+  .yt-play:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
+  .yt :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+</style>

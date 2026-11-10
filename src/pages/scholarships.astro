@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Img from '../components/Img.astro';
+import YouTube from '../components/YouTube.astro';
+---
+
+<BaseLayout
+  title="Scholarships"
+  description="Our scholarships provide full funding to attend the European Forum Alpbach. Scholars join a diverse network of young leaders, gain access to unique learning experiences, and engage with global experts."
+>
+  <Hero image="hero-scholarships" title="Empowering Tomorrow’s Leaders">
+    <p>
+      Scholarships provide full funding to attend the European Forum Alpbach. Scholars join a diverse network of young
+      leaders, gain access to unique learning experiences, and engage with global experts. Apply now for EFA25 to shape
+      Europe's future!
+    </p>
+  </Hero>
+
+  <!-- Who can apply? -->
+  <section class="section section--cream apply">
+    <div class="container apply-grid">
+      <div class="apply-text reveal">
+        <h2 class="t-olive">Who can apply?</h2>
+        <p>
+          A scholarship for the European Forum Alpbach event, available to applicants from all countries and
+          disciplines, is for students, young professionals and change-makers who want to impact and become active
+          citizens in their region. Artists and non-graduates are invited to apply, too. We encourage candidates coming
+          from disadvantaged socio-economic backgrounds, members of ethnical or religious minorities, members of the
+          LGBTQIA+ community, people with disabilities, and refugees or displaced persons to apply for a scholarship.
+        </p>
+        <p>In addition, please note the following application criteria:</p>
+        <ul>
+          <li>
+            You have not received a scholarship from the European Forum Alpbach yet and therefore qualify as a
+            first-time scholarship holder. If you attended the Forum virtually in 2020 or 2021, you may still apply.
+          </li>
+          <li>The main language of the European Forum Alpbach is English, so a minimum level of B2 will be required.</li>
+          <li>You are between 18 and 30 years of age (or between 18 and 35 for citizens of the Global South)</li>
+          <li>
+            All applicants must be available and ready to attend the European Forum Alpbach event for at least eleven
+            days, including the Academia Week and the Conference Week.
+          </li>
+        </ul>
+      </div>
+      <div class="apply-img rounded reveal">
+        <Img name="reinventing-democracy" class="cover" style="object-position: 45.3% 0%" sizes="(min-width: 900px) 400px, 100vw" />
+      </div>
+      <div class="apply-img rounded reveal">
+        <Img name="pride-alpbach-2" class="cover" style="object-position: 0% 50%" sizes="(min-width: 900px) 400px, 100vw" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Other questions -->
+  <section class="section section--olive faq">
+    <div class="container">
+      <h2 class="reveal">Other questions</h2>
+      <div class="faq-grid">
+        <div class="faq-list body-large">
+          <div class="reveal">
+            <h3 class="h5">What does the European Forum Alpbach Scholarship cover?</h3>
+            <p>Scholarships for the European Forum Alpbach cover your participation fee and your accommodation in Alpbach.</p>
+            <p>Travel expenses, healthcare and insurance are not included in the scholarship and must be covered by the participant.</p>
+          </div>
+          <div class="reveal">
+            <h3 class="h5">How to Apply?</h3>
+            <p>Please apply via EFA's online application platform.</p>
+          </div>
+          <div class="reveal">
+            <h3 class="h5">When is the application period for EFA27?</h3>
+            <p>We will update this website as soon as the dates are out! Stay tuned!</p>
+          </div>
+        </div>
+        <div class="faq-media reveal">
+          <div class="faq-img rounded">
+            <Img name="loggia-opening" class="cover" sizes="(min-width: 900px) 555px, 100vw" />
+          </div>
+          <a class="btn btn--outline btn--sm faq-btn" href="https://www.alpbach.org/faq-scholarship-programme" target="_blank" rel="noopener nofollow">Find out more!</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meet former scholarship holders -->
+  <section class="section section--cream former">
+    <div class="container former-grid">
+      <div class="reveal">
+        <h2 class="t-olive">Meet former scholarship holders!</h2>
+        <p class="body-large">
+          Get to know scholarship holders from previous editions sharing their insights from their EFA experience!
+        </p>
+      </div>
+      <div class="former-video reveal">
+        <YouTube id="DlwwCgHd3H4" title="Former scholarship holders at the European Forum Alpbach" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .apply { padding: 144px 0 150px; }
+  .apply-grid { display: grid; grid-template-columns: 400px 400px 400px; justify-content: space-between; gap: 12px; align-items: start; }
+  .apply-text h2 { margin-bottom: 16px; }
+  .apply-text p { margin-bottom: 8px; }
+  .apply-text ul { margin: 0; padding-left: 22px; color: #000; }
+  .apply-text li { margin-bottom: 8px; }
+  .apply-img { height: 664px; }
+
+  .faq { padding: 120px 0 40px; }
+  .faq h2 { margin-bottom: 32px; }
+  .faq-grid { display: grid; grid-template-columns: 606px 555px; justify-content: space-between; gap: 40px; align-items: start; }
+  .faq-list { display: grid; gap: 32px; }
+  .faq-list h3 { margin-bottom: 8px; }
+  .faq-media { position: relative; }
+  .faq-img { height: 480px; }
+  /* El botón va encima de la foto, como en la original */
+  .faq-btn { position: absolute; left: 50%; bottom: 42px; transform: translateX(-50%); min-width: 173px; }
+  .faq-btn:hover { transform: translateX(-50%); }
+
+  .former { padding: 110px 0 165px; }
+  .former-grid { display: grid; grid-template-columns: 503px 606px; justify-content: space-between; gap: 40px; align-items: center; }
+  .former h2 { margin-bottom: 16px; }
+  .former p { max-width: 414px; }
+  .former-video { height: 330px; }
+
+  @media (max-width: 1240px) {
+    .apply-grid { grid-template-columns: 1.1fr 1fr 1fr; gap: 24px; }
+    .faq-grid, .former-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 899px) {
+    .apply, .faq, .former { padding: 56px 0; }
+    .apply-grid { grid-template-columns: 1fr 1fr; }
+    .apply-text { grid-column: 1 / -1; }
+    .apply-img { height: 360px; }
+    .faq-grid, .former-grid { grid-template-columns: 1fr; }
+    .faq-img { height: 320px; }
+    .former-video { height: auto; aspect-ratio: 16 / 9; }
+    .former, .former p { text-align: center; margin-inline: auto; }
+  }
+  @media (max-width: 560px) {
+    .apply-grid { grid-template-columns: 1fr; }
+    .apply-img { height: 300px; }
+  }
+</style>
